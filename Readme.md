@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Александр Дорошенко](https://up.htmlacademy.ru/react/5/user/385015).
-* Наставник: `Неизвестно`.
+* Наставник: [Олег Зубов] (https://htmlacademy.ru/profile/id42701).
 
 ---
 
