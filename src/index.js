@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app";
 
-const Settings = {
+const Setting = {
   PLACES_COUNT: 312,
 };
 
 ReactDOM.render(
-    <App placesCount={Settings.PLACES_COUNT}/>,
+    <App placesCount={Setting.PLACES_COUNT}/>,
     document.querySelector(`#root`)
 );
