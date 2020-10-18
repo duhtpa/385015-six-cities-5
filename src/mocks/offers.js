@@ -88,6 +88,29 @@ const USERS = [
   },
 ];
 
+const LOCATIONS = [
+  {
+    city: `Amsterdam`,
+    latitude: 52.3909553943508,
+    longitude: 4.85309666406198,
+  },
+  {
+    city: `Amsterdam`,
+    latitude: 52.369553943508,
+    longitude: 4.85309666406198,
+  },
+  {
+    city: `Amsterdam`,
+    latitude: 52.3909553943508,
+    longitude: 4.929309666406198,
+  },
+  {
+    city: `Amsterdam`,
+    latitude: 52.3809553943508,
+    longitude: 4.939309666406198,
+  },
+];
+
 const Count = {
   BEDROOMS: 4,
   GUESTS_MAX: 6,
@@ -167,8 +190,6 @@ const getOfferReviews = (count) => {
 
     reviews.push(review);
   }
-  // console.log(reviews);
-  // const reviewsArr = sortingByAscending(reviews);
 
   return reviews;
 };
@@ -197,6 +218,7 @@ const generateOffers = () => {
       reviews: getOfferReviews(getRandom(0, Count.REVIEWS - 1)),
       title: TITLES[getRandom(0, TITLES.length - 1)],
       typePlace: TypePlace[getRandom(0, TypePlace.length - 1)],
+      location: LOCATIONS[i],
     };
 
     offers.push(offer);
