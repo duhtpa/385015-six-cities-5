@@ -15,6 +15,12 @@ const App = () => {
     return offers.find((item) => item.id === id);
   };
 
+  const getOffersClosely = (pathname) => {
+    const id = +pathname.replace(`/offer/`, ``);
+
+    return offers.filter((item) => item.id !== id); // ну у нас же в моках 4 офера )))
+  };
+
   return (
     <BrowserRouter>
       <Switch>
@@ -36,6 +42,7 @@ const App = () => {
           render={({history}) => (
             <OfferPage
               offer={getOffer(history.location.pathname)}
+              offersClosely={getOffersClosely(history.location.pathname)}
             />
           )}
         />
