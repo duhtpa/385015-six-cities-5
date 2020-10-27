@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 
@@ -209,4 +210,7 @@ Favorites.propTypes = {
   })).isRequired,
 };
 
-export default Favorites;
+const mapStateToProps = ({offers}) => ({offers});
+
+export {Favorites};
+export default connect(mapStateToProps)(Favorites);

@@ -1,16 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import PropTypes from "prop-types";
 
 import OfferList from "../offer-list/offer-list";
 import OffersMap from "../offers-map/offers-map";
-// import moment from "moment";
-
 import FormFeedback from "../form-feedback/form-feedback";
 import ReviewsList from "../reviews-list/reviews-list";
 
 const OfferPage = (props) => {
-  const {offer, offersClosely} = props;
+  const {offers, match} = props;
+  const offer = offers.find((item) => item.id === +match.params.id) || offers[0];
+  const offersClosely = offers.slice(0, 3);
   const ratingInPercent = offer.rating * 20 + `%`;
 
   return (
@@ -25,9 +26,6 @@ const OfferPage = (props) => {
               >
                 <img className="header__logo" src="/img/logo.svg" alt="6 cities logo" width="81" height="41" />
               </Link>
-              {/* <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="/img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </a> */}
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -163,7 +161,7 @@ const OfferPage = (props) => {
 };
 
 OfferPage.propTypes = {
-  offer: PropTypes.shape({
+  offers: PropTypes.arrayOf({
     bedroomsCount: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     guestsCount: PropTypes.number.isRequired,
@@ -183,8 +181,13 @@ OfferPage.propTypes = {
       name: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
     }).isRequired,
+    find: PropTypes.func.isRequired,
+    slice: PropTypes.func.isRequired,
   }).isRequired,
-  offersClosely: PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
-export default OfferPage;
+const mapStateToProps = ({offers}) => ({offers});
+
+export {OfferPage};
+export default connect(mapStateToProps)(OfferPage);

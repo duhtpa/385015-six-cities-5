@@ -1,5 +1,3 @@
-// // const AVATAR_URL = `https://api.adorable.io/avatars/128`;
-
 const ITEMS = [
   `Wi-Fi`,
   `Washing machine`,
@@ -90,7 +88,7 @@ const USERS = [
 
 const LOCATIONS = [
   {
-    city: `Amsterdam`,
+    city: `Brussels`,
     latitude: 52.3909553943508,
     longitude: 4.85309666406198,
   },
@@ -164,7 +162,7 @@ const getOfferOwner = () => {
   return owner;
 };
 
-const getDate = () => { // рандомизировать дату
+const getDate = () => {
   const daysGap = getRandom(-100, 1);
   const currentDate = new Date();
   currentDate.setHours(23, 59, 59, 999);
@@ -181,7 +179,6 @@ const getOfferReviews = (count) => {
 
     const review = {
       avatar: user.avatar,
-      // date: moment(date).format(`MMMM YYYY`),
       date: getDate(),
       name: user.name,
       rating: getRandom(0, Count.RATING) * 20 + `%`,
@@ -197,8 +194,7 @@ const getOfferReviews = (count) => {
 const generateId = () => Date.now() + parseInt(Math.random() * 10000, 10);
 
 const generateOffers = () => {
-  // const count = getRandom(0, Count.OFFERS);
-  const count = Count.OFFERS; // пока статичное количество
+  const count = Count.OFFERS;
   const offers = [];
 
   for (let i = 0; i < count; i++) {
