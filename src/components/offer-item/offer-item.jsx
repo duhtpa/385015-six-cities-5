@@ -1,17 +1,20 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import PropTypes from "prop-types";
+
+import {ActionCreator} from '../../store/action';
 
 const OfferItem = (props) => {
   const {onMouseEnterItem, offer} = props;
   const ratingInPercent = offer.rating * 20 + `%`;
 
   const handleMouseEnterItem = () => {
-    onMouseEnterItem(offer);
+    onMouseEnterItem(offer.id);
   };
 
   const handleMouseLeaveItem = () => {
-    onMouseEnterItem(null);
+    onMouseEnterItem(-1);
   };
 
   return (
@@ -83,4 +86,13 @@ OfferItem.propTypes = {
   }).isRequired,
 };
 
-export default OfferItem;
+const {setActiveItem} = ActionCreator;
+
+const mapStateToProps = ({}) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  onMouseEnterItem: (id) => dispatch(setActiveItem(id)),
+});
+
+export {OfferItem};
+export default connect(mapStateToProps, mapDispatchToProps)(OfferItem);

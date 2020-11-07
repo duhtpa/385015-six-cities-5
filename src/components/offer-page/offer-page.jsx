@@ -9,7 +9,7 @@ import FormFeedback from "../form-feedback/form-feedback";
 import ReviewsList from "../reviews-list/reviews-list";
 
 const OfferPage = (props) => {
-  const {offers, match} = props;
+  const {offers, match, selectedCity} = props;
   const offer = offers.find((item) => item.id === +match.params.id) || offers[0];
   const offersClosely = offers.slice(0, 3);
   const ratingInPercent = offer.rating * 20 + `%`;
@@ -142,6 +142,8 @@ const OfferPage = (props) => {
           <section className="property__map map">
             <OffersMap
               offers={offersClosely}
+              selectedCity={selectedCity}
+              ActiveOffer={+match.params.id}
             />
           </section>
         </section>
@@ -161,7 +163,7 @@ const OfferPage = (props) => {
 };
 
 OfferPage.propTypes = {
-  offers: PropTypes.arrayOf({
+  offers: PropTypes.arrayOf(PropTypes.shape({
     bedroomsCount: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     guestsCount: PropTypes.number.isRequired,
@@ -181,13 +183,12 @@ OfferPage.propTypes = {
       name: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
     }).isRequired,
-    find: PropTypes.func.isRequired,
-    slice: PropTypes.func.isRequired,
-  }).isRequired,
+  })).isRequired,
   match: PropTypes.object.isRequired,
+  selectedCity: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({offers}) => ({offers});
+const mapStateToProps = ({offers, selectedCity}) => ({offers, selectedCity});
 
 export {OfferPage};
 export default connect(mapStateToProps)(OfferPage);
