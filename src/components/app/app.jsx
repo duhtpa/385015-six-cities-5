@@ -11,13 +11,13 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main
-            // offers={offers}
-          />
+          <Main />
         </Route>
+
         <Route exact path="/favorites">
           <Favorites />
         </Route>
+
         <Route exact path="/login">
           <SignIn />
         </Route>
@@ -27,6 +27,7 @@ const App = () => {
           path="/offer/:id?"
           component={OfferPage}
         />
+
         <Route>
           <h2>Page 404</h2>
         </Route>

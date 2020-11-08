@@ -89,8 +89,8 @@ const USERS = [
 const LOCATIONS = [
   {
     city: `Brussels`,
-    latitude: 52.3909553943508,
-    longitude: 4.85309666406198,
+    latitude: 50.88047,
+    longitude: 4.35319666406198,
   },
   {
     city: `Amsterdam`,

@@ -10,12 +10,6 @@ class OfferList extends PureComponent {
   render() {
     const {offers} = this.props;
 
-    const handleMouseEnterItem = (item) => {
-      this.setState(() => ({
-        activeOffer: item,
-      }));
-    };
-
     return <React.Fragment>
       {
         offers.map((offer, i) => {
@@ -23,7 +17,6 @@ class OfferList extends PureComponent {
             <OfferItem
               offer={offer}
               key={offer + i}
-              onMouseEnterItem={handleMouseEnterItem}
             />
           );
         })
