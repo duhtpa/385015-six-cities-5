@@ -1,29 +1,27 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import OfferItem from "../offer-item/offer-item";
 
-class OfferList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+import withOfferList from "../../hocs/with-offer-list/with-offer-list";
 
-  render() {
-    const {offers} = this.props;
+const OfferItemWrapper = withOfferList(OfferItem);
 
-    return <React.Fragment>
-      {
-        offers.map((offer, i) => {
-          return (
-            <OfferItem
-              offer={offer}
-              key={offer + i}
-            />
-          );
-        })
-      }
-    </React.Fragment>;
-  }
-}
+const OfferList = (props) => {
+  const {offers} = props;
+
+  return <React.Fragment>
+    {
+      offers.map((offer, i) => {
+        return (
+          <OfferItemWrapper
+            offer={offer}
+            key={offer + i}
+          />
+        );
+      })
+    }
+  </React.Fragment>;
+};
 
 OfferList.propTypes = {
   offers: PropTypes.array.isRequired,

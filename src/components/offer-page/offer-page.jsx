@@ -8,6 +8,10 @@ import OffersMap from "../offers-map/offers-map";
 import FormFeedback from "../form-feedback/form-feedback";
 import ReviewsList from "../reviews-list/reviews-list";
 
+import withFormFeedback from "../../hocs/with-form-feedback/with-form-feedback";
+
+const FormFeedbackWrapper = withFormFeedback(FormFeedback);
+
 const OfferPage = (props) => {
   const {offers, match, selectedCity} = props;
   const offer = offers.find((item) => item.id === +match.params.id) || offers[0];
@@ -134,8 +138,8 @@ const OfferPage = (props) => {
               <section className="property__reviews reviews">
                 <ReviewsList
                   reviews={offer.reviews}
-                />;
-                <FormFeedback />;
+                />
+                <FormFeedbackWrapper />
               </section>
             </div>
           </div>

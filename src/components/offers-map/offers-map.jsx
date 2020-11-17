@@ -1,4 +1,4 @@
-import React, {createRef, PureComponent} from 'react';
+import React, {createRef, Component} from 'react';
 import {connect} from 'react-redux';
 
 import PropTypes from 'prop-types';
@@ -11,7 +11,7 @@ import leaflet from "leaflet";
 const zoom = 12;
 const leafletIconSize = [23, 30];
 
-export class OffersMap extends PureComponent {
+export class OffersMap extends Component {
   constructor(props) {
     super(props);
     this._mapRef = createRef();
@@ -111,5 +111,4 @@ OffersMap.propTypes = {
 
 const mapStateToProps = ({activeOffer, selectedCity}) => ({activeOffer, selectedCity});
 
-// export default OffersMap;
 export default connect(mapStateToProps)(OffersMap);

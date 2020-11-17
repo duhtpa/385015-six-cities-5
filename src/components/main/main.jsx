@@ -9,8 +9,12 @@ import OffersMap from "../offers-map/offers-map";
 import CityList from "../city-list/city-list";
 import SortingOptions from "../sorting-options/sorting-options";
 
+import withSortingOptions from "../../hocs/with-sorting-options/with-sorting-options";
+
+const SortingOptionsWrapper = withSortingOptions(SortingOptions);
+
 const Main = (props) => {
-  const {city, offers, onCityClick} = props;
+  const {city, offers, onCityClick, onSortingTypeClick} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -52,7 +56,9 @@ const Main = (props) => {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offers.length} places to stay in {city}</b>
 
-              <SortingOptions />
+              <SortingOptionsWrapper
+                onSortingTypeClick={onSortingTypeClick}
+              />
 
               <div className="cities__places-list places__list tabs__content">
 
@@ -80,13 +86,17 @@ Main.propTypes = {
   city: PropTypes.string.isRequired,
   offers: PropTypes.array.isRequired,
   onCityClick: PropTypes.func.isRequired,
+  onSortingTypeClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({city, offers}) => ({city, offers});
+const mapStateToProps = ({city, offers, sortingType}) => ({city, offers, sortingType});
 
 const mapDispatchToProps = (dispatch) => ({
   onCityClick(city) {
     dispatch(ActionCreator.changeCity(city));
+  },
+  onSortingTypeClick(sortingType) {
+    dispatch(ActionCreator.setSortingTypeAction(sortingType));
   },
 });
 
